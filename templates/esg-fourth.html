@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% block body %}
+<!--<h1>ESG</h1>-->
+<div class="split left">
+     <div class="logo">
+        <img src="{{url_for('static', filename='logo_3.png')}}"/>
+    </div>
+    <div class="centered">
+<!--<img src="{{url_for('static', filename='logo_3.png')}}"/>-->
+<h3>I like to support companies whose values align with mine. </h3>
+        </div>
+<!--        progress bar-->
+<div class="meter">
+    <span style="width: 100%"></span>
+</div>
+    </div>
+
+
+<div class="split right">
+    <div class="centered">
+<form name="esg-fourth" action="/esg-fourth" method="get">
+    <input type="radio" id="a" name="esg-fourth" value="a" required>
+        <label for="a">Strongly Disagree </label></br>
+    <input type="radio" id="b" name="esg-fourth" value="b">
+        <label for="b">Somewhat Disagree </label></br>
+    <input type="radio" id="c" name="esg-fourth" value="c">
+        <label for="c">Neutral </label></br>
+    <input type="radio" id="d" name="esg-fourth" value="d">
+        <label for="d">Somewhat Agree </label></br>
+    <input type="radio" id="e" name="esg-fourth" value="d">
+        <label for="e">Strongly Agree </label></br></br></br>
+    <input type="submit" value="See Results" class="button">
+</form>
+    </div></div>
+{% endblock %}

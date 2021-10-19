@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% block body %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+			{% for key, value in data.items() %}
+				{% if value is string %}
+					['{{ key }}', '{{ value }}'],
+				{% else %}
+					['{{ key }}', {{ value }}],
+				{% endif %}
+			{% endfor %}
+        ]);
+
+        var options = {
+          title: '',
+          is3D: false,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
+
+<div class="split left">
+    <div class="logo">
+<!--    <img src="{{url_for('static', filename='logo_3.png')}}"/>-->
+
+    </div>
+    <div class="centered">
+        <img src="{{url_for('static', filename='under_construction.png')}}"/>
+<h1>Results</h1>
+        <h2>ESG Preference: {{ user_esg }}</h2>
+        <h2>Investment Objective: {{ user_io }}</h2>
+
+    </div>
+
+    </div>
+</div>
+
+<div class="split right">
+    <div class="centered">
+<div style="margin: 10px 0 0 10px;width: 1000px">
+
+    <h2>Results</h2>
+    <h3>Asset Mix: {{ asset_mix }}</h3>
+
+		<div id="piechart" style="width: 900px; height: 500px;"></div>
+	</div>
+	</div>
+    </div></div>
+
+
+
+{% endblock %}
