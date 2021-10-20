@@ -1,9 +1,18 @@
 from typing import List, Any
-
 from flask import Flask, render_template, request, redirect, jsonify, url_for
 import json
 from icbm_code.calculations import time_horizon as th, \
     investment_objective as io, risk_profile as rp, esg
+
+from pymongo import MongoClient
+cluster = MongoClient("mongodb+srv://chrono:J8HPx8Tusis8TMOZ@cluster0.dfgj3.mongodb.net/ICBM?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
+db = cluster["ICBM"]
+collection = db["ETF"]
+
+results = collection.find({"type":"Balanced", "style":"ESG"})
+
+for results in results:
+    print(results["name"])
 
 # Instantiate classes
 user_score_th = th.TimeHorizon()
